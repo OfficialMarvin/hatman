@@ -12,10 +12,15 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
+            position: relative;
         }
 
         .container {
             padding: 20px;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
         h1, h2, h3 {
@@ -41,20 +46,21 @@
 
         .flashlight {
             position: absolute;
-            width: 150px;
-            height: 150px;
+            width: 300px;
+            height: 300px;
             border-radius: 50%;
             background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 20%, rgba(255, 255, 255, 0) 60%);
             pointer-events: none;
             mix-blend-mode: lighten;
             transition: transform 0.05s ease;
+            z-index: 2;
         }
 
         .jumpscare {
             position: absolute;
             width: 100px;
             height: 100px;
-            background: url('hatman.png') no-repeat center center;
+            background: url('https://i.ibb.co/VQ0BrKM/hatman.webp') no-repeat center center;
             background-size: contain;
             animation: jumpscare 0.3s ease-in-out;
         }
@@ -101,10 +107,26 @@
 
     <script>
         const flashlight = document.querySelector('.flashlight');
+        const container = document.querySelector('.container');
 
         document.addEventListener('mousemove', e => {
             flashlight.style.left = `${e.pageX - flashlight.offsetWidth / 2}px`;
             flashlight.style.top = `${e.pageY - flashlight.offsetHeight / 2}px`;
+
+            // Check if the flashlight overlaps with the container
+            const flashlightRect = flashlight.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+
+            if (
+                flashlightRect.left < containerRect.right &&
+                flashlightRect.right > containerRect.left &&
+                flashlightRect.top < containerRect.bottom &&
+                flashlightRect.bottom > containerRect.top
+            ) {
+                container.style.opacity = 1;
+            } else {
+                container.style.opacity = 0;
+            }
         });
 
         function createJumpscare() {
