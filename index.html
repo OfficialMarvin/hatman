@@ -7,20 +7,21 @@
     <style>
         body {
             background-color: black;
-            color: rgba(255, 255, 255, 0); /* Make text invisible initially */
+            color: white;
             font-family: 'Comic Sans MS', cursive, sans-serif;
             margin: 0;
             padding: 0;
             overflow-y: scroll;
             position: relative;
             height: 200vh; /* Ensures the page has enough content to scroll */
+            -webkit-mask-image: radial-gradient(circle, transparent 150px, black 150px);
+            mask-image: radial-gradient(circle, transparent 150px, black 150px);
         }
 
         .container {
             padding: 20px;
             position: relative;
             z-index: 1;
-            transition: color 0.3s;
         }
 
         h1, h2, h3, p {
@@ -55,7 +56,7 @@
             position: absolute;
             width: 200px;
             height: 200px;
-            background: url('https://i.ibb.co/VQ0BrKM/hatman.webp') no-repeat center center;
+            background: url('https://i.ibb.co/R9XVWcq/hatman.png') no-repeat center center;
             background-size: contain;
             animation: jumpscare 0.3s ease-in-out;
         }
@@ -102,26 +103,12 @@
 
     <script>
         const flashlight = document.querySelector('.flashlight');
-        const container = document.querySelector('.container');
 
         document.addEventListener('mousemove', e => {
             flashlight.style.left = `${e.pageX - flashlight.offsetWidth / 2}px`;
             flashlight.style.top = `${e.pageY - flashlight.offsetHeight / 2}px`;
-
-            // Check if the flashlight overlaps with the container
-            const flashlightRect = flashlight.getBoundingClientRect();
-            const containerRect = container.getBoundingClientRect();
-
-            if (
-                flashlightRect.left < containerRect.right &&
-                flashlightRect.right > containerRect.left &&
-                flashlightRect.top < containerRect.bottom &&
-                flashlightRect.bottom > containerRect.top
-            ) {
-                container.style.color = 'white';
-            } else {
-                container.style.color = 'rgba(255, 255, 255, 0)';
-            }
+            document.body.style.webkitMaskPosition = `${e.pageX - 150}px ${e.pageY - 150}px`;
+            document.body.style.maskPosition = `${e.pageX - 150}px ${e.pageY - 150}px`;
         });
 
         function createJumpscare() {
