@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HATMAN Coin</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        p {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .button {
+            display: inline-block;
+            margin: 10px 5px;
+            padding: 10px 20px;
+            background-color: #ffcc00;
+            color: black;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .flashlight {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 20%, rgba(255, 255, 255, 0) 60%);
+            pointer-events: none;
+            mix-blend-mode: lighten;
+            transition: transform 0.05s ease;
+        }
+
+        .jumpscare {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: url('hatman.png') no-repeat center center;
+            background-size: contain;
+            animation: jumpscare 0.3s ease-in-out;
+        }
+
+        @keyframes jumpscare {
+            from { transform: scale(1); }
+            to { transform: scale(1.5); }
+        }
+    </style>
+</head>
+<body>
+    <div class="flashlight"></div>
+
+    <div class="container">
+        <h1>HATMAN Coin</h1>
+        <h2>The Spookiest Meme Coin Around!</h2>
+        <p>Join the dark side with HATMAN Coin, inspired by the infamous shadow figure you see after too much Benadryl!</p>
+        
+        <h3>About</h3>
+        <p>HATMAN Coin merges spooky fun with the wild world of meme coins. It's not just a token, it's a terrifyingly good time!</p>
+        
+        <h3>How to Buy</h3>
+        <p>1. Get a wallet like MetaMask.<br>2. Load it with ETH.<br>3. Swap ETH for HATMAN Coin on Uniswap.<br>4. Hold tight and watch for shadows...</p>
+        
+        <h3>Tokenomics</h3>
+        <p>Total Supply: 666,666,666 HATMAN<br>No taxes, just pure horror.</p>
+        
+        <h3>Roadmap</h3>
+        <p>
+            Phase 1: Launch and summon the HATMAN army.<br>
+            Phase 2: Spread fear with guerrilla marketing.<br>
+            Phase 3: Unleash HATMAN on the world with major partnerships.
+        </p>
+        
+        <h3>Community</h3>
+        <p>
+            <a href="https://twitter.com" class="button">Twitter</a>
+            <a href="https://telegram.org" class="button">Telegram</a>
+        </p>
+        
+        <h3>Disclaimer</h3>
+        <p>HATMAN Coin is a meme coin with no intrinsic value. It's all for fun and scares!</p>
+    </div>
+
+    <script>
+        const flashlight = document.querySelector('.flashlight');
+
+        document.addEventListener('mousemove', e => {
+            flashlight.style.left = `${e.pageX - flashlight.offsetWidth / 2}px`;
+            flashlight.style.top = `${e.pageY - flashlight.offsetHeight / 2}px`;
+        });
+
+        function createJumpscare() {
+            const jumpscare = document.createElement('div');
+            jumpscare.classList.add('jumpscare');
+            jumpscare.style.left = `${Math.random() * window.innerWidth}px`;
+            jumpscare.style.top = `${Math.random() * window.innerHeight}px`;
+            document.body.appendChild(jumpscare);
+            
+            setTimeout(() => {
+                jumpscare.remove();
+            }, 1000);
+        }
+
+        setInterval(createJumpscare, 10000); // Jumpscare every 10 seconds
+
+    </script>
+</body>
+</html>
