@@ -7,15 +7,13 @@
     <style>
         body {
             background-color: black;
-            color: white;
+            color: rgba(255, 255, 255, 0); /* Make text invisible initially */
             font-family: 'Comic Sans MS', cursive, sans-serif;
             margin: 0;
             padding: 0;
             overflow-y: scroll;
             position: relative;
-            height: 200vh; /* Ensures the page has enough content to scroll */
-            -webkit-mask-image: radial-gradient(circle, transparent 150px, black 150px);
-            mask-image: radial-gradient(circle, transparent 150px, black 150px);
+            height: 160vh; /* Ensures the page has enough content to scroll */
         }
 
         .container {
@@ -103,12 +101,29 @@
 
     <script>
         const flashlight = document.querySelector('.flashlight');
+        const container = document.querySelector('.container');
 
         document.addEventListener('mousemove', e => {
             flashlight.style.left = `${e.pageX - flashlight.offsetWidth / 2}px`;
             flashlight.style.top = `${e.pageY - flashlight.offsetHeight / 2}px`;
-            document.body.style.webkitMaskPosition = `${e.pageX - 150}px ${e.pageY - 150}px`;
-            document.body.style.maskPosition = `${e.pageX - 150}px ${e.pageY - 150}px`;
+
+            const flashlightRect = flashlight.getBoundingClientRect();
+            const elements = container.querySelectorAll('h1, h2, h3, p, .button');
+
+            elements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const inFlashlight =
+                    rect.left < flashlightRect.right &&
+                    rect.right > flashlightRect.left &&
+                    rect.top < flashlightRect.bottom &&
+                    rect.bottom > flashlightRect.top;
+
+                if (inFlashlight) {
+                    element.style.color = 'white';
+                } else {
+                    element.style.color = 'rgba(255, 255, 255, 0)';
+                }
+            });
         });
 
         function createJumpscare() {
