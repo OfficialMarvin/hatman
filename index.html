@@ -127,12 +127,12 @@
                 }
             });
         });
-
+        
         function createJumpscare() {
             const jumpscare = document.createElement('div');
             jumpscare.classList.add('jumpscare');
-            jumpscare.style.left = `${Math.random() * window.innerWidth}px`;
-            jumpscare.style.top = `${Math.random() * window.innerHeight}px`;
+            jumpscare.style.left = `${Math.random() * (window.innerWidth - jumpscare.offsetWidth)}px`;
+            jumpscare.style.top = `${Math.random() * (window.innerHeight - jumpscare.offsetHeight)}px`;
             document.body.appendChild(jumpscare);
 
             const audio = document.getElementById('jumpscareSound');
