@@ -68,6 +68,8 @@
 <body>
     <div class="flashlight"></div>
 
+    <audio id="jumpscareSound" src="spook1.mp3"></audio>
+
     <div class="container">
         <h1>$HATMAN</h1>
         <h2>The Spookiest Meme Coin Around!</h2>
@@ -132,6 +134,10 @@
             jumpscare.style.left = `${Math.random() * window.innerWidth}px`;
             jumpscare.style.top = `${Math.random() * window.innerHeight}px`;
             document.body.appendChild(jumpscare);
+
+            const audio = document.getElementById('jumpscareSound');
+            audio.currentTime = 0; // Rewind to the start
+            audio.play();
             
             setTimeout(() => {
                 jumpscare.remove();
