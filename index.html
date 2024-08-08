@@ -12,14 +12,14 @@
             margin: 0;
             padding: 0;
             overflow-y: scroll;
-            position: relative;
-            height: 160vh;
         }
 
         .container {
             padding: 20px;
             position: relative;
             z-index: 1;
+            min-height: 100vh; /* Ensures the container fits the screen */
+            box-sizing: border-box;
         }
 
         h1, h2, h3, p {
@@ -40,10 +40,10 @@
 
         .flashlight {
             position: absolute;
-            width: 200px; /* Adjusted for mobile */
-            height: 200px; /* Adjusted for mobile */
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 30%, rgba(255, 255, 255, 0.2) 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 30%, rgba(255, 255, 255, 0.2) 70%);
             pointer-events: none;
             mix-blend-mode: lighten;
             transition: transform 0.05s ease;
@@ -52,8 +52,8 @@
 
         .jumpscare {
             position: absolute;
-            width: 1000px;
-            height: 1000px;
+            width: 426px;
+            height: 770px;
             background: url('https://i.ibb.co/R9XVWcq/hatman.png') no-repeat center center;
             background-size: contain;
             animation: jumpscare 0.3s ease-in-out;
@@ -138,8 +138,8 @@
         function createJumpscare() {
             const jumpscare = document.createElement('div');
             jumpscare.classList.add('jumpscare');
-            jumpscare.style.left = `${Math.random() * (window.innerWidth - 1000)}px`;
-            jumpscare.style.top = `${Math.random() * (window.innerHeight - 1000)}px`;
+            jumpscare.style.left = `${Math.random() * (window.innerWidth - 426)}px`;
+            jumpscare.style.top = `${Math.random() * (window.innerHeight - 770)}px`;
             document.body.appendChild(jumpscare);
 
             const audio = document.getElementById('jumpscareSound');
