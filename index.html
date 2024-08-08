@@ -146,9 +146,7 @@
             audio.currentTime = 0;
             audio.play();
             
-            setTimeout(() => {
-                jumpscare.remove();
-            }, 4000);
+            setTimeout(() => { jumpscare.remove(); }, 5000);
         }
 
         setInterval(createJumpscare, Math.random() * (45000 - 25000) + 25000);
